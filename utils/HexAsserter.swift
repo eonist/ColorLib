@@ -1,6 +1,6 @@
 import Foundation
 
-class ColorAsserter {
+class HexAsserter {
     /**
      * PARAM: string ("both 0x00ff00" and "0x00f" will return true)
      */

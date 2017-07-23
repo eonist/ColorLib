@@ -91,4 +91,41 @@ extension NSColorParser{
     static func nsColor(_ hsb:HSB) -> NSColor{
         return hsb.rgb.nsColor
     }
+    /**
+     *
+     */
+    static func randomColor()-> NSColor{
+        let r:CGFloat  = CGFloat(arc4random() % 255) / 255.0//Swift 3 upgrade, -> was rand()
+        let g:CGFloat  = CGFloat(arc4random() % 255) / 255.0
+        let b:CGFloat  = CGFloat(arc4random() % 255) / 255.0
+        let nsColor:NSColor = NSColor(calibratedRed: r, green: g, blue: b, alpha: 1)
+        return nsColor
+    }
+    /**
+     * Returns a random CGColor
+     */
+    static func random()->CGColor{
+        let r:CGFloat  = CGFloat(arc4random() % 255) / 255.0
+        let g:CGFloat  = CGFloat(arc4random() % 255) / 255.0
+        let b:CGFloat  = CGFloat(arc4random() % 255) / 255.0
+        let color:CGColor  = CGColor(red: r, green: g, blue: b, alpha: 1.0)
+        return color
+    }
+    
+    /**
+     * Interpolates between two NSColors 
+     */
+    static func interpolate(_ from:NSColor,_ to:NSColor,_ scalar:CGFloat) ->NSColor{
+        func interpolate(_ start:CGFloat,_ end:CGFloat,_ scalar:CGFloat)->CGFloat{
+            return start + (end - start) * scalar
+        }
+        let fromRGBColor:NSColor = from.usingColorSpace(.genericRGB)!
+        let toRGBColor:NSColor = to.usingColorSpace(.genericRGB)!
+        let red:CGFloat = interpolate(fromRGBColor.redComponent, toRGBColor.redComponent,scalar)
+        let green:CGFloat = interpolate(fromRGBColor.greenComponent, toRGBColor.greenComponent,scalar)
+        let blue:CGFloat = interpolate(fromRGBColor.blueComponent, toRGBColor.blueComponent,scalar)
+        let alpha:CGFloat = interpolate(fromRGBColor.alphaComponent, toRGBColor.alphaComponent,scalar)
+        return NSColor.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
+
 }

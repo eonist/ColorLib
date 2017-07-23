@@ -17,7 +17,14 @@ extension NSColor{
     func alpha(_ alpha:CGFloat)->NSColor{
         return NSColor(self,alpha)
     }
-    static var random:NSColor{return ColorParser.randomColor()}
+    /**
+     * Interpolates between two NSColors
+     * EXAMPLE: NSColor.green.interpolate(.blue, 0.5)
+     */
+    func interpolate(_ to:NSColor,_ scalar:CGFloat)->NSColor{
+        return NSColorParser.interpolate(self, to, scalar)
+    }
+    static var random:NSColor{return NSColorParser.randomColor()}
     var rgb:RGB {return RGBParser.rgb(self)}
     var rgba:RGBA{return RGBAParser.rgba(self)}
     var hexString:String{return HexParser.hexString(self)}/*EXAMPLE: NSColor.redColor().hexString FF0000*/ 

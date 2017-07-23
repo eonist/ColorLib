@@ -16,3 +16,14 @@ ColorParser.nsColor("FF0000",1)//red nsColor
 ColorParser.nsColor(0xFF0000,1)//red nsColor
 ColorParser.nsColor(16711935,1)//red nsColor
 ```
+
+### Interpolation:
+
+<img width="100" alt="img" src="https://raw.githubusercontent.com/stylekit/img/master/color_interpolation_take_three.gif">
+
+The above animation can be achieved with the simple line bellow  
+
+```swift
+let color = NSColor.green.interpolate(.blue, 0.5)
+```
+
